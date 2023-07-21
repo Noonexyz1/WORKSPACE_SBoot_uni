@@ -1,6 +1,8 @@
 package com.client.model;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +16,8 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Nombre del cliente es obligatorio")
     private String nombres;
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;

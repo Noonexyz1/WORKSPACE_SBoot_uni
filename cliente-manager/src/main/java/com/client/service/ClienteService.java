@@ -1,5 +1,6 @@
 package com.client.service;
 
+import com.client.app.commons.exceptions.BadRequesException;
 import com.client.model.Cliente;
 import com.client.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,15 @@ public class ClienteService {
 
 
     public Cliente crear(Cliente cliente){
+        if(repository.existsByNombres(cliente.getNombres())){
+            //throw new BadRequesException(ErrMsg.NAME_IS_NOT_VALID.getCode(), ErrMsg.NAME_IS_NOT_VALID.getMessage());
+
+            //Para probar el GenericERROR al momento de crear un objeto Usuario con el mismo nombre
+            //double a = 5 / 0;
+
+            throw new BadRequesException();
+
+        }
         return repository.save(cliente);
     }
     public List<Cliente> recuperaTodo(){
