@@ -19,26 +19,20 @@ import java.util.List;
 @Validated
 @RequestMapping(path = "/clientes")
 public class ClienteController {
-
     @Autowired
     private ClienteService service;
-
-
-
 
     @GetMapping(path = {""}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Cliente>> get(){
         List<Cliente> clientes = service.recuperaTodo();
-
-        System.out.println("FLAGS: " + ClienteController.class.getName() + " METODO: " + "Getodo get()");
-
         return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
+    @GetMapping(path = {"/{id}"}, produces = {MediaType.APPLICATION_JSON_VALUE})  //PathVariable, por el path recibimos un ID
+    public ResponseEntity<Cliente> getDetalle(@PathVariable Long id){
+        return new ResponseEntity<>(service.detalle(id), HttpStatus.OK);
     }
     @PostMapping(path = {"/"}, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Cliente> crearCliente(@Valid @RequestBody Cliente cliente){
-
-        System.out.println("FLAGS: " + ClienteController.class.getName() + " METODO: " + "Getodo crearCliente()");
-
         return new ResponseEntity<>(service.crear(cliente), HttpStatus.OK);
     }
 
