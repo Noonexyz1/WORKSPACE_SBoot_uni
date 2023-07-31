@@ -27,4 +27,9 @@ public class CuentasController {
         return new ResponseEntity<>(service.crear(request), HttpStatus.CREATED);  //HttpStatus.OK que es 200 y asi los demas
     }
 
+    @GetMapping(path = {"/nroCuenta"}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<CuentaResponse> getDetalle(@PathVariable String nroCuenta){
+        return new ResponseEntity<>(service.buscarCuenta(nroCuenta), HttpStatus.OK);
+    }
+
 }

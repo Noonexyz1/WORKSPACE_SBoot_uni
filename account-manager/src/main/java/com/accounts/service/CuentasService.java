@@ -41,6 +41,8 @@ public class CuentasService {
                   .build();
      }
 
-
-
+     public Cuenta buscarCuenta(String nroCuenta){
+          return repository.findByNumero(nroCuenta);
+     }
+     
 }
