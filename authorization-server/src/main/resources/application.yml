@@ -1,0 +1,7 @@
+server:
+  port: 8083
+  servlet:
+    context-path: '/authorization-server'
+spring:
+  application:
+    name: authorization-server
