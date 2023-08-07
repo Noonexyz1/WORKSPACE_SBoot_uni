@@ -10,7 +10,11 @@ spring:
       label: master
   config:
     import: configserver:http://localhost:8082/configuration-manager
-
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/authorization-server
 #  jpa:
 #    hibernate:
 #      show-sql: true
